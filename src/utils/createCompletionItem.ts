@@ -1,8 +1,15 @@
-import * as vscode from "vscode";
+  import * as vscode from "vscode";
 import { Context } from "./createContext";
 import { Config } from "../configuration/configuration.interface";
 import { FileInfo } from "./file-utills";
 
+/**
+ * 파일 정보를 입력하여 대상이 파일이면 파일 목록들을, 아니면 폴더 정보를 던진다.
+ * @param fileInfo 
+ * @param config 
+ * @param context 
+ * @returns 
+ */
 export function createPathCompletionItem(
   fileInfo: FileInfo,
   config: Config,
@@ -11,11 +18,11 @@ export function createPathCompletionItem(
   return fileInfo.isFile
     ? createFileItem(fileInfo, config, context)
     : createFolderItem(
-        fileInfo,
-        config.autoSlash,
-        config.autoTrigger,
-        context.importRange
-      );
+      fileInfo,
+      config.autoSlash,
+      config.autoTrigger,
+      context.importRange
+    );
 }
 
 function createFolderItem(
@@ -35,9 +42,9 @@ function createFolderItem(
     insertText: newText,
     command: autoTrigger
       ? {
-          title: "Trigger suggest",
-          command: "editor.action.triggerSuggest",
-        }
+        title: "Trigger suggest",
+        command: "editor.action.triggerSuggest",
+      }
       : undefined,
   };
 }

@@ -1,20 +1,61 @@
 // See https://go.microsoft.com/fwlink/?LinkId=733558
 // for the documentation about the tasks.json format
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "npm",
-			"script": "watch",
-			"problemMatcher": "$tsc-watch",
-			"isBackground": true,
-			"presentation": {
-				"reveal": "never"
-			},
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": "$tsc-watch",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "command": "ts-node",
+      "args": [
+        "${file}"
+      ],
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "group": "build",
+      "label": "ts-node: 활성 파일 실행 by custom"
+    },
+    {
+      "type": "shell",
+      "command": "tsc",
+      "args": [
+        "-p",
+        "./tsconfig.json",
+        "&",
+        "node",
+        "./target/main.js"
+      ],
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "group": "build",
+      "label": "tsc: 빌드 및 실행 - tsconfig.json by custom"
+    },
+    {
+      "type": "shell",
+      "command": "tsc",
+      "args": [
+        "-p",
+        "./tsconfig.json",
+      ],
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "group": "build",
+      "label": "tsc: 빌드 - tsconfig.json by custom"
+    }
+  ]
 }
